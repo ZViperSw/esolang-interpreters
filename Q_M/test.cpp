@@ -11,7 +11,8 @@ enum class token {
     DEC,
     OUTPUT,
     CHAR_OUTPUT,
-    SQUARE
+    SQUARE,
+    HALT
     };
 
 class Q_M {
@@ -26,7 +27,8 @@ class Q_M {
     {"01100000", token::DEC},
     {"00101110", token::OUTPUT},
     {"00100100", token::SQUARE},
-    {"01011110", token::CHAR_OUTPUT}
+    {"01011110", token::CHAR_OUTPUT},
+    {"01011100", token::HALT}
 };
 
 std::unordered_map<char, int> logic = {
@@ -34,7 +36,7 @@ std::unordered_map<char, int> logic = {
     {'_', 0}
     };
     
-    void runcode(const std::string& code) {
+     void runcode(const std::string& code) {
     
     while (current < code.length()) {
    
@@ -63,13 +65,15 @@ std::unordered_map<char, int> logic = {
    
    case token::SQUARE:
    current_value *= current_value; break;
-      
+   
+   case token::HALT:
+   exit(0);
+   
    default:
    std::cout << "\n";
    
    }
    
-   if (current >= 1200 || current_value < -1) { current_value = 0; current = 0;}
    
    current+= 8;
    } 
