@@ -10,6 +10,7 @@ enum class token {
     ADD,
     DEC,
     OUTPUT,
+    CHAR_OUTPUT,
     SQUARE
     };
 
@@ -24,7 +25,8 @@ class Q_M {
     {"01111110", token::ADD},
     {"01100000", token::DEC},
     {"00101110", token::OUTPUT},
-    {"00100100", token::SQUARE}
+    {"00100100", token::SQUARE},
+    {"01011110", token::CHAR_OUTPUT}
 };
 
 std::unordered_map<char, int> logic = {
@@ -56,9 +58,12 @@ std::unordered_map<char, int> logic = {
    case token::OUTPUT:
    std::cout << static_cast<int>(current_value); break;
    
+   case token::CHAR_OUTPUT:
+   std::cout << static_cast<char>(current_value); break;
+   
    case token::SQUARE:
    current_value *= current_value; break;
-   
+      
    default:
    std::cout << "\n";
    
